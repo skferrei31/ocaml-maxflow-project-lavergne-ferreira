@@ -47,7 +47,7 @@ let write_file path graph =
   (* Write all arcs *)
   let _ = e_fold graph (fun count arc -> fprintf ff "e %d %d %d %s\n" arc.src arc.tgt count arc.lbl ; count + 1) 0 in
   
-  fprintf ff "\n%% End of graph\n" ;
+  fprintf ff "\n%% End of graphclose_out ff ;\n" ;
   
   close_out ff ;
   ()
@@ -111,4 +111,19 @@ let from_file path =
   
   close_in infile ;
   final_graph
+
+  let export (gr:string graph) file =
+    let debut =
+   " digraph finite_state_machine {\n
+      fontname=\"Helvetica,Arial,sans-serif\"\n
+      node [fontname= \"Helvetica,Arial,sans-serif\"]\n
+      edge [fontname=\"Helvetica,Arial,sans-serif\"]\n
+      rankdir=LR;\n
+      node [shape = circle]; \n" in
+    let graph = (e_fold gr (fun acu arc -> acu ^ (string_of_int arc.src)^"->"^(string_of_int arc.tgt)^"[label = \""^arc.lbl^"\"];\n") debut) ^ "}" in
+    let ff = open_out file in
+    fprintf ff "%s" graph;
+    close_out ff ;
+    ()
+
   
