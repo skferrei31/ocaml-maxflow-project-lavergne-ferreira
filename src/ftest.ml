@@ -1,5 +1,6 @@
 open Gfile
 open Tools
+open Algoff
     
 let () =
 
@@ -31,9 +32,11 @@ let () =
   (*let graph = clone_nodes (from_file infile) in*)
   (*let graph = gmap (from_file infile) (fun x -> string_of_int ((int_of_string x)+1))in*)
   let gr1 = gmap (from_file infile) (fun x -> (int_of_string x)) in
-  let gr2 = add_arc gr1 1 5 999 in
-  let graph = gmap gr2 (fun x -> (string_of_int x)) in
-
+  (*let gr2 = add_arc gr1 1 5 999 in*)
+  let gr2 = make_graph_flow gr1 in 
+  (*let graph = gmap gr3 (fun (x,y) -> (string_of_int x)^" / "^(string_of_int y)) in*)
+  let gr3 = make_graph_ecart gr2 in
+  let graph = gmap gr3 (fun x -> (string_of_int x)) in
 
   (* Rewrite the graph that has been read. *)
   (*let () = write_file outfile graph in*)
