@@ -30,7 +30,7 @@ To use our project with the [`Makefile`](Makefile) we made, you need to type `ma
     make build
     make demo2
 
-This will use a given file that represents a graph and execute our algorithm on it, turning it into a .svg file and opening it on firefox so you can immediately see it. Since all the files made using our code have the same name, if you want to save a particular version of a grpah, just change the name of the grpah you want to keep for later so our program doesn't overwrite it.
+This will use a given file that represents a graph and execute our algorithm on it, turning it into a .svg file and opening it on firefox so you can immediately see it. Since all the files made using our code have the same name, if you want to save a particular version of a graph, just change the name of the graph you want to keep for later so our program doesn't overwrite it.
 
 ### Change arguments
 If you want to use a particular graph or change which nodes are the source and destination, you need to edit the following lines of our makefile. They are normally at the top of it. Here is what they are for:
