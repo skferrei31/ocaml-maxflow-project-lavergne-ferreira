@@ -1,5 +1,6 @@
 open Gfile
 open Tools
+open Algoff
     
 let () =
 
@@ -22,17 +23,42 @@ let () =
   and outfile = Sys.argv.(4)
   
   (* These command-line arguments are not used for the moment. *)
-  and _source = int_of_string Sys.argv.(2)
-  and _sink = int_of_string Sys.argv.(3)
+  and source = int_of_string Sys.argv.(2)
+  and sink = int_of_string Sys.argv.(3)
   in
 
   (* Open file *)
-  let graph = clone_nodes (from_file infile) in
+  (*let graph = from_file infile in*)
+  (*let graph = clone_nodes (from_file infile) in*)
+  (*let graph = gmap (from_file infile) (fun x -> string_of_int ((int_of_string x)+1))in*)
+  let gr1 = gmap (from_file infile) (fun x -> (int_of_string x)) in
+  (*let gr2 = add_arc gr1 1 5 999 in*)
+  let _gr2 = make_graph_flow gr1 in 
+  (*let graph = gmap gr3 (fun (x,y) -> (string_of_int x)^" / "^(string_of_int y)) in*)
+  (*let _gr3 = make_graph_ecart gr2 in
+  let _graph = gmap gr3 (fun x -> (string_of_int x)) in
+  let _chemins =  find_path gr3 source sink [] in
+  let () = Printf.printf "\nListe retournée : " in
+  let () = List.iter (Printf.printf "  %d ") (Option.get chemins) in*)
+  (*
+  let flot_min = find_flot_min gr3 (Option.get chemins) Int.max_int in 
+  let () = Printf.printf "\nValeur flot_min: %d" flot_min in
+  *)
+  (*let updated_graph = update_flow gr3 (Option.get chemins) in 
+  let updated_graph_str = gmap updated_graph (fun x -> (string_of_int x)) in*)
 
+  let finito = ford gr1 source sink in
+  let finito_str = gmap finito (fun x -> (string_of_int x)) in
+  let () = export finito_str outfile in
 
   (* Rewrite the graph that has been read. *)
-  let () = write_file outfile graph in
+  (*let () = write_file outfile graph in*)
+  (*let () = export graph outfile in*)
   (*clone_nodes graph *) 
 
-  ()
+  ();
+ 
+
+
+
 
