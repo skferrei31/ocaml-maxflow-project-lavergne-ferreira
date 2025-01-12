@@ -67,7 +67,7 @@ let ford (gr: int graph) (src: id) (dest:id) =
   let () = Printf.printf "\nfait le graphe de flow" in
   let gr_ecart = make_graph_ecart gr_flow in 
   let () = Printf.printf "\nfait le graphe d ecart" in
-  let rec loop grl srcl destl =
+  let rec loop grl srcl destl =    
     let chemin = Option.map List.rev (find_path grl srcl destl []) in
     let _affichage = Printf.printf "\nchemin :" in
     let () = List.iter (Printf.printf "  %d") (Option.get chemin) in
@@ -77,3 +77,7 @@ let ford (gr: int graph) (src: id) (dest:id) =
   in
   loop gr_ecart src dest
   let () = Printf.printf "\nfini!"
+  
+  
+  
+  
